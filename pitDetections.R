@@ -33,6 +33,6 @@ SBDetSum$count = 1
 SBDetSum = aggregate(count ~ Site, FUN = "sum", data = SBDetSum)
 
 
-##### Need more detections at: #####
+##### Need more detections at: ####
 # Evergreen, Covey, Fisheries, Weagle, Felicity, Marler, Shadowwood, 204Lee (Yaoqi) 
 
