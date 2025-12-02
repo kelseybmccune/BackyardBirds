@@ -19,6 +19,7 @@ boxplot(bbDetSum$NumberVisits ~ bbDetSum$Condition)
 
 ## Total number of visits per household
 # Create a new data frame that sums the 1s in AntennaNum column to count the number of visits for each household
+bbDet.o$Site[which(bbDet.o$Site == "1011LeeRd")]<-"1011Lee"
 SiteDetSum = aggregate(AntennaNum ~ Site, FUN = "sum", data = bbDet.o) 
 # Change column names to make it easier to understand
 colnames(SiteDetSum)[2] = "NumberVisits"
