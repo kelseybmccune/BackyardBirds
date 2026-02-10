@@ -73,15 +73,16 @@ boxplot(log(bbMaster$NumberVisits+1) ~ bbMaster$Positive) # more visits, less po
 bbMaster$Exp.Condition = factor(bbMaster$Exp.Condition, levels = c("CON","BF","C","BFC")) # reorder factor levels so CON is baseline
 
 
-bbMaster$binPos = ifelse(bbMaster$BacResult == "None" | bbMaster$BacResult == "E.Coli",0,1) # a column that indicates if sample had salmonella
+bbMaster$Salm = ifelse(bbMaster$BacResult == "None" | bbMaster$BacResult == "E.Coli",0,1) # a column that indicates if sample had salmonella
+# KM CHANGED FROM binPos TO Salm - AF needs to adjust rest of code to replace binPos with Salm
+
 table(bbMaster$binPos, bbMaster$Exp.Condition)
 #     CON BF  C  BFC
 # 0   21  35  8   13
 # 1   13  8   0   3
 
-bbMaster$binPos2 = ifelse(bbMaster$BacResult == "None",0,1) # includes E.Coli in the positive
-table(bbMaster$binPos2, bbMaster$Exp.Condition) 
-bbMaster$binPos3 = ifelse(bbMaster$BacResult == "Both" | bbMaster$BacResult == "E.Coli",1,0) # only E.coli positive birds
+bbMaster$Both = ifelse(bbMaster$BacResult == "None",0,1) # all bacteria positive birds
+# KM CHANGED FROM binPos3 to Both - AF needs to adjust rest of code
 table(bbMaster$binPos3, bbMaster$Exp.Condition)
 
 det.data = bbMaster[-which(bbMaster$Species == "EnviroSample" | is.na(bbMaster$Positive)),]
@@ -90,13 +91,12 @@ det.data$BacResult = factor(det.data$BacResult, levels = c("None","E.Coli","Salm
 det.m <- glmer(NumberVisits ~ BacResult + (1|Species) + (1|Household) + (1|olre), 
                data = det.data, family = "poisson")
 summary(det.m) # no differences - birds with bacterial infections were not detected more at the feeders
-library(emmeans)
-emmeans(det.m, pairwise ~ BacResult,type="response") # no pairwise differences in feeder use of birds with different infeciton status
 
 det.m2 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|Household) + (1|olre), 
                data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
-summary(det.m2) # Looking at just Salmonella - More visits = less likely to be positive: ß = -0.72, p << 0.01
+summary(det.m2) 
 overdisp_fun(det.m2) # a little overdispersed
+
 det.m3 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|olre), 
                 data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
 anova(det.m2,det.m3) # household random effect is important for model fit
@@ -105,8 +105,8 @@ det.m4 <- glmer(NumberVisits ~ binPos2 + (1|Household) + (1|olre),
 anova(det.m2,det.m4) # species random effect is important for model fit
 
 library(nlme)
-det.m2 <- lme(log(NumberVisits+1) ~ binPos2, random = list(Species=~1,Household=~1), 
-                data = det.data[-which(det.data$PitID == "NonTarget"),])
+det.m2 <- lme(log(NumberVisits+1) ~ binPos, random = list(Species=~1,Household=~1), 
+                data = det.data[-which(det.data$PitID =="NonTarget"),])
 summary(det.m2) 
 overdisp_fun(det.m2)
 
@@ -124,7 +124,7 @@ sab = ggplot(det.data, aes(x = as.factor(binPos), y = log(NumberVisits+1)))+
   scale_x_discrete(labels = c("No", "Yes")) +
   labs(y = "Number of visits to food", x = "S.enterica detected")
 
-det.m3 <- glmer(NumberVisits ~ as.factor(binPos3) + (1|Species) + (1|Household) + (1|olre), 
+det.m3 <- glmer(NumberVisits ~ binPos3 + (1|Species) + (1|Household) + (1|olre), 
                 data = det.data, family = "poisson")
 summary(det.m3) # just e.coli, no signficant effect
 
@@ -141,6 +141,7 @@ ecb = ggplot(det.data, aes(x = as.factor(binPos3), y = log(NumberVisits+1)))+
 
 ggarrange(ecb,sab)
 
+#### Disease by household condition ####
 dis.m <- glmer(binPos ~ Exp.Condition + (1|Species) + (1|Household),
                data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
                control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
@@ -152,6 +153,7 @@ anova(dis.m,dis.m2) # Household does not add to model fit, remove this random ef
 summary(dis.m2)
 #BF houses less likely to be Salm positive than CON: ß = -1.54, p = 0.03; Number of visits doesn't affect probability of positive
 
+library(emmeans)
 dis.emm <- emmeans(dis.m2,pairwise ~ Exp.Condition,type="response")
 summary(dis.emm) # no pairwise differences between conditions though
 plot(dis.emm$emmeans, comparisons = T, adjust = F) 
@@ -199,7 +201,7 @@ ec = ggplot(tmp2[which(tmp2$BacResult == "E.Coli" | tmp2$BacResult == "Both"),],
 
 ggarrange(ec,sa,common.legend = T)
 
-
+boxplot(bbMaster$binPos2 ~ bbMaster$Exp.Condition)
 
 ### Homeowner surveys ####
 
