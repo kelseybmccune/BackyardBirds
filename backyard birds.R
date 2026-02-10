@@ -1,0 +1,295 @@
+library(mvtnorm)
+library(survminer)
+library(coxme)
+library(tidyverse)
+library(gdata)
+library(WriteXLS)
+#library(xlsx)
+library(reshape2)
+library(ggplot2)
+library(GGally)
+library(psych)
+library(RColorBrewer)
+library(lme4)
+library(multcomp)
+
+# Download data as .csv from Google Drive. Load the data into R
+setwd("~/Documents/GitHub/BackyardBirds") # set working directory to GitHub folder where you store the files
+bbDet.o = read.csv("BBDetections.csv") # load RFID data
+bbBio.o = read.csv("BBBiometrics.csv") # load biometrics
+BBDisOld.o = read.csv("BBFecalOld.csv")
+BBDisNew.o = read.csv("BBFecalNew.csv")
+
+## Total number of visits per bird
+# Create a new data frame that sums the 1s in AntennaNum column to count the number of visits for each specific bird
+bbDetSum = aggregate(AntennaNum ~ Bird + Condition, FUN = "sum", data = bbDet.o) 
+# Change column names to make it easier to understand
+colnames(bbDetSum) = c("PitID","Condition","NumberVisits")
+## Look at the distribution of visits 
+# most birds visit between 1 & 50 times
+hist(bbDetSum$NumberVisits, xlab = "Number of visits", cex.lab = 1.5, cex.axis = 1.3)
+# only detections from BF & BFC sites. Number of visits looks similar, though BF has more variation
+boxplot(bbDetSum$NumberVisits ~ bbDetSum$Condition)
+bbMaster.o = bbBio.o[,-c(2:5,10,13:14,24:27)]
+colnames(bbMaster.o)[c(2,3)] = c("USGS", "PitID")
+bbMaster = merge(bbMaster.o, bbDetSum, by = "PitID", all = T)
+bbMaster = bbMaster[-which(bbMaster$PitID == "RECAP" | is.na(bbMaster$Species)),]
+bbMaster$NumberVisits[which(is.na(bbMaster$NumberVisits))]<-0
+bbMaster$PitID[which(is.na(bbMaster$PitID))]<- "NonTarget"
+
+## Total number of visits per household
+# Create a new data frame that sums the 1s in AntennaNum column to count the number of visits for each household
+SiteDetSum = aggregate(AntennaNum ~ Site, FUN = "sum", data = bbDet.o) 
+# Change column names to make it easier to understand
+colnames(SiteDetSum)[2] = "NumberVisits"
+## Look at the distribution of visits 
+hist(SiteDetSum$NumberVisits, xlab = "Number of visits", cex.lab = 1.5, cex.axis = 1.3)
+plot(SiteDetSum$NumberVisits ~ as.factor(SiteDetSum$Site))
+# need to change household names to match with bbMaster...
+
+## Total birds detected per household
+SBDetSum = aggregate(AntennaNum ~ Site + Bird, FUN = "sum", data = bbDet.o) 
+SBDetSum$count = 1
+SBDetSum = aggregate(count ~ Site, FUN = "sum", data = SBDetSum) # number of individuals detected at each house
+
+
+##### Disease #####
+BBDisOld = BBDisOld.o[which(BBDisOld.o$Test == "Chromo Plate"),c(2:3,5:6)]
+BBDisNew = BBDisNew.o[,c(1:2,8:9)]
+colnames(BBDisOld) = c("USGS","Date","Positive","BacResult")
+colnames(BBDisNew) = c("Date","USGS","Positive","BacResult")
+BBDis = rbind(BBDisOld,BBDisNew)
+BBDis$BacResult[which(is.na(BBDis$BacResult))]<-"None"
+table(BBDis$BacResult)
+
+bbMaster = merge(BBDis, bbMaster, by = "USGS", all = T)
+bbMaster$Species[which(is.na(bbMaster$Species))] <- "EnviroSample"
+table(bbMaster$Positive) # 57 N, 52 Y = 48% infected with Salm and/or E. coli
+table(bbMaster$BacResult) # 29 infected birds have Salm or both = 56%, 23 have E. coli
+table(is.na(bbMaster$Positive)) # Fecals processed for 45% of captures
+
+table(bbMaster$Species[which(bbMaster$Positive == "Y")]) # NOCA-9, CARW-9, TUTI-6
+boxplot(log(bbMaster$NumberVisits+1) ~ bbMaster$Positive) # more visits, less positive?
+bbMaster$Exp.Condition = factor(bbMaster$Exp.Condition, levels = c("CON","BF","C","BFC")) # reorder factor levels so CON is baseline
+
+
+bbMaster$binPos = ifelse(bbMaster$BacResult == "None" | bbMaster$BacResult == "E.Coli",0,1) # a column that indicates if sample had salmonella
+table(bbMaster$binPos, bbMaster$Exp.Condition)
+#     CON BF  C  BFC
+# 0   21  35  8   13
+# 1   13  8   0   3
+
+bbMaster$binPos2 = ifelse(bbMaster$BacResult == "None",0,1) # includes E.Coli in the positive
+table(bbMaster$binPos2, bbMaster$Exp.Condition) 
+bbMaster$binPos3 = ifelse(bbMaster$BacResult == "Both" | bbMaster$BacResult == "E.Coli",1,0) # only E.coli positive birds
+table(bbMaster$binPos3, bbMaster$Exp.Condition)
+
+det.data = bbMaster[-which(bbMaster$Species == "EnviroSample" | is.na(bbMaster$Positive)),]
+det.data$olre = 1:nrow(det.data) # poisson models are overdispersed otherwise
+det.data$BacResult = factor(det.data$BacResult, levels = c("None","E.Coli","Salm","Both"))
+det.m <- glmer(NumberVisits ~ BacResult + (1|Species) + (1|Household) + (1|olre), 
+               data = det.data, family = "poisson")
+summary(det.m) # no differences - birds with bacterial infections were not detected more at the feeders
+library(emmeans)
+emmeans(det.m, pairwise ~ BacResult,type="response") # no pairwise differences in feeder use of birds with different infeciton status
+
+det.m2 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|Household) + (1|olre), 
+               data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+summary(det.m2) # Looking at just Salmonella - More visits = less likely to be positive: ß = -0.72, p << 0.01
+overdisp_fun(det.m2) # a little overdispersed
+det.m3 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|olre), 
+                data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+anova(det.m2,det.m3) # household random effect is important for model fit
+det.m4 <- glmer(NumberVisits ~ binPos2 + (1|Household) + (1|olre), 
+                data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+anova(det.m2,det.m4) # species random effect is important for model fit
+
+library(nlme)
+det.m2 <- lme(log(NumberVisits+1) ~ binPos2, random = list(Species=~1,Household=~1), 
+                data = det.data[-which(det.data$PitID == "NonTarget"),])
+summary(det.m2) 
+overdisp_fun(det.m2)
+
+### Except in the slightly overdispersed Poisson model, probability of infection is unrelated to frequency of detection by RFID
+
+sab = ggplot(det.data, aes(x = as.factor(binPos), y = log(NumberVisits+1)))+
+  geom_boxplot()+
+  theme_bw() +
+  theme(axis.title.y = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.x = element_text(size = 16, face = "bold")
+        ) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  labs(y = "Number of visits to food", x = "S.enterica detected")
+
+det.m3 <- glmer(NumberVisits ~ as.factor(binPos3) + (1|Species) + (1|Household) + (1|olre), 
+                data = det.data, family = "poisson")
+summary(det.m3) # just e.coli, no signficant effect
+
+ecb = ggplot(det.data, aes(x = as.factor(binPos3), y = log(NumberVisits+1)))+
+  geom_boxplot()+
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(size = 14),
+    axis.title.x = element_text(size = 16, face = "bold"),
+    axis.title.y = element_text(size = 16)
+  ) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  labs(y = "Number of visits to food", x = "E.coli detected")
+
+ggarrange(ecb,sab)
+
+dis.m <- glmer(binPos ~ Exp.Condition + (1|Species) + (1|Household),
+               data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+               control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
+summary(dis.m) # Fit is singular, household accounts for no variance
+dis.m2 = dis.m <- glmer(binPos ~ Exp.Condition + (1|Species),
+                        data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+                        control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
+anova(dis.m,dis.m2) # Household does not add to model fit, remove this random effect
+summary(dis.m2)
+#BF houses less likely to be Salm positive than CON: ß = -1.54, p = 0.03; Number of visits doesn't affect probability of positive
+
+dis.emm <- emmeans(dis.m2,pairwise ~ Exp.Condition,type="response")
+summary(dis.emm) # no pairwise differences between conditions though
+plot(dis.emm$emmeans, comparisons = T, adjust = F) 
+dis.emm$contrasts %>%
+  summary(infer = T)
+
+dis.m3 <- glmer(binPos3 ~ Exp.Condition + (1|Species),
+                        data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+                        control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
+summary(dis.m3) # no difference in E.coli by site condition
+
+tmp = bbMaster[,c(4,7,21:23)]
+tmp = tmp[-which(is.na(tmp$BacResult))]
+tmp = tmp[-which(is.na(tmp$BacResult)),]
+tmp = tmp[-which(is.na(tmp$Exp.Condition)),]
+tmp$count = 1
+tmp2 = aggregate(count ~ BacResult + Exp.Condition, data = tmp, FUN = "sum")
+tmp2$BacResult = factor(tmp2$BacResult, levels = c("E.Coli","Salm","Both","None"))
+levels(tmp2$Exp.Condition) = c("Control","Bird Feeder","Chickens","Both")
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Control",34,43)
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Chickens",8,tmp2$totals)
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Both", 16, tmp2$totals)
+tmp2$perc = round((tmp2$count/tmp2$totals)*100)
+
+sa = ggplot(tmp2[which(tmp2$BacResult == "Salm" | tmp2$BacResult == "Both"),], aes(y = perc, x=""), fill = Exp.Condition) + 
+  geom_bar(stat = "identity", aes(fill = Exp.Condition)) +
+  scale_fill_manual(values = c("#132b43","#6a89a7","#cccccc"))+
+  coord_polar("y", start=0) +
+  theme_void() + theme(
+    legend.position = "none",
+    plot.title = element_text(size = 14, face = "bold",hjust = 0.5)
+  ) +
+  labs(title = "S. enterica positive birds")
+
+ec = ggplot(tmp2[which(tmp2$BacResult == "E.Coli" | tmp2$BacResult == "Both"),], aes(y = perc, x=""), fill = Exp.Condition) + 
+  geom_bar(stat = "identity", aes(fill = Exp.Condition)) +
+  scale_fill_manual(values = c("#132b43","#6a89a7","#8c8c8c","#cccccc"))+
+  coord_polar("y", start=0) +
+  theme_void() + theme(
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
+  ) +
+  labs(fill = "Site type", title = "E. coli positive birds")
+
+ggarrange(ec,sa,common.legend = T)
+
+
+
+### Homeowner surveys ####
+
+part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
+                  Response = c("Y","Y","Y","N","N","N"),
+                  Households = c(4,3,7,10,11,7)
+)
+
+part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
+part$Response = factor(part$Response, levels = c("N", "Y"))
+ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_fill_grey() +
+  theme_bw() + theme(
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 17),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14)
+  ) +
+  #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
+  labs(x = "Survey Question", y = "Number of Households")
+
+detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
+
+
+# Daily aggregation of bird feeder detections
+daily = bbDet.o
+daily = aggregate(AntennaNum ~ Bird + Date, data = daily, FUN = "sum")
+
+# Duration spent at feeders
+dur = bbDet.o
+dur$lagTime = NA
+library(chron)
+dur$Time <- chron(times.=dur$Time)
+dur$Date = as.POSIXct(dur$Date)
+
+lagTime = diff(dur$Time)
+
+library(dplyr)
+dur = dur %>%
+  group_by(Bird) %>%
+  arrange(Date) %>%
+  mutate(lagTime = Time - lag(Time, default = first(Time)))
+dur$lagTime = dur$lagTime*86400
+dur = dur[-which(dur$lagTime<0),]
+dur = dur[-which(dur$lagTime == 0),]
+dur = dur[which(dur$lagTime < 30),]
+dur.ag = aggregate(lagTime ~ Bird + Date, data = dur, FUN = "sum")
+dur.ag$lagTime = as.numeric(dur.ag$lagTime)
+describe(dur.ag$lagTime)
+
+# Daily visits by species
+colnames(bbDet.o)[3] = "PIT.tag.ID"
+spp = merge(bbDet.o, bbBio, by = "PIT.tag.ID")
+daily = aggregate(AntennaNum ~ PIT.tag.ID + Species + Date.x, data = spp, FUN = "sum")
+daily$sppnum = 1
+sppNum = aggregate(sppnum ~ Date.x, data = daily, FUN = "sum")
+
+
+# Ani's pathogen pressure
+pp = read.csv("pathpressure.csv")
+hist(pp$yardpathpress) # very normally distributed
+ppm = lm(yardpathpress~bfcoopdist, data = pp)
+summary(ppm)
+plot(ppm)
+#significant effect of bf and coop distance on yard path pressure 
+#for each unit increase in distance, pathogen pressure decreases by 12
+# ß = -12.2, p = 0.003
+ggplot(pp,aes(bfcoopdist, yardpathpress)) +
+  geom_point() +
+  geom_smooth(method='lm') +
+  labs(x='Distance between bird feeder and chicken coop', y='Pathogen pressure') +
+  theme_bw() + theme(
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 17)
+  ) #+
+  #annotate(geom="text", x = 28, y = 6200, label = "p = 0.003",color = "black",size = 6, fontface = "italic")
+
+hist(pp$pathpatches)
+ppm2 = lm(pathpatches~bfcoopdist, data = pp)
+summary(ppm2)
+#for each unit increase in distance, path patches decreases by 0.5
+# ß = -0.49, p = 0.0004
+
+ggplot(pp,aes(bfcoopdist, pathpatches)) +
+  geom_point() +
+  geom_smooth(method='lm') +
+  labs(x='Distance between bird feeder and chicken coop', y='Patch pathogens') +
+  theme_bw() + theme(
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 17)
+  ) 
+ # annotate(geom="text", x = 28, y = 6200, label = "p = 0.003",color = "black",size = 6, fontface = "italic")
