@@ -48,10 +48,14 @@ plot(SiteDetSum$NumberVisits ~ as.factor(SiteDetSum$Site))
 # need to change household names to match with bbMaster...
 
 ## Total birds detected per household
-SBDetSum = aggregate(AntennaNum ~ Site + Bird, FUN = "sum", data = bbDet.o) 
-SBDetSum$count = 1
+SBDetSum = aggregate(AntennaNum ~ Site + Bird + Condition, FUN = "sum", data = bbDet.o) 
+SBDetSum$olre = 1:nrow(SBDetSum)
 SBDetSum = aggregate(count ~ Site, FUN = "sum", data = SBDetSum) # number of individuals detected at each house
 
+#### This is the model for poster dot plot figure ####
+m = glmer(AntennaNum ~ Condition + (1|Site) + (1|olre), family = "poisson", data = SBDetSum)
+summary(m)
+####
 
 ##### Disease #####
 BBDisOld = BBDisOld.o[which(BBDisOld.o$Test == "Chromo Plate"),c(2:3,5:6)]
@@ -92,10 +96,11 @@ det.m <- glmer(NumberVisits ~ BacResult + (1|Species) + (1|Household) + (1|olre)
                data = det.data, family = "poisson")
 summary(det.m) # no differences - birds with bacterial infections were not detected more at the feeders
 
-det.m2 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|Household) + (1|olre), 
-               data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+##### This is the model for poster boxplot figure ####
+det.m2 <- glmer(Both ~ NumberVisits + (1|Species) + (1|Household), 
+               data = det.data, family = binomial(link="logit"))
 summary(det.m2) 
-overdisp_fun(det.m2) # a little overdispersed
+#####
 
 det.m3 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|olre), 
                 data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
@@ -160,7 +165,8 @@ plot(dis.emm$emmeans, comparisons = T, adjust = F)
 dis.emm$contrasts %>%
   summary(infer = T)
 
-dis.m3 <- glmer(binPos3 ~ Exp.Condition + (1|Species),
+#### This is the model for the barplot for the poster
+dis.m3 <- glmer(Both ~ Exp.Condition + (1|Species),
                         data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
                         control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
 summary(dis.m3) # no difference in E.coli by site condition
