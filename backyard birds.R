@@ -318,18 +318,22 @@ data$Poultry.Science.[which(data$Poultry.Science. == "")]<-"Y" # dealing with bl
 # Add column of 0/1 for positive to be able to run logistic regression
 data$bin.Pos = ifelse(data$Positive. == "Y",1,0) # does not consider N* samples as positive. Does include old chromo agar positive samples though
 data$Exp.Condition = factor(data$Exp.Condition, levels = c("CON","BF","C","BFC")) # change order of levels so that CON is the baseline (rather than BF). This way, in the model the other levels will be compared to CON
+data$Date = as.Date(data$Date, format = '%m/%d/%Y') # to add a season variable, we have to change the class of this column to a "Date" class
+data$season = ifelse(data$Date < "2025-09-19", "BS", "NBS") # May - Aug is BS, Sept - Apr is NBS
 
 library(lme4)
-model = glmer(bin.Pos ~ Exp.Condition + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # more complex, realistic model (requiring a higher sample size)
-
+model = glmer(bin.Pos ~ Exp.Condition + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # simpler model 
+model2 = glmer(bin.Pos ~ Exp.Condition + season + (1|Species) + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # more complex model based on your analysis section of the AAV grant (might require higher sample size)
 library(simr)
-sim1 = powerSim(model, nsim=100) # "warning: result might be an observed power calculation" just means that we are using preliminary (observed) data to calculate power rather than simulated data 
-sim1 # Power for Exp.Condition = 75% means we have a 75% chance of detecting an effect of Exp.Condition on disease if it exists... pretty good!
+sim1 = powerSim(model2, nsim=100) # higher nsim will take longer to run. 100 simulations takes just a few minutes
+# "warning: result might be an observed power calculation" just means that we are using preliminary (observed) data to calculate power rather than simulated data 
+sim1 # Power for Exp.Condition = 56% means we have a 56% chance of detecting an effect of Exp.Condition on disease if it exists... not great but not terrible
 
 table(data$Exp.Condition) # This shows we have 47 birds in CON, 30 in BF, 11 in C and 10 in BFC with disease data (or will have disease data soon)
-sim_ext = extend(model, within="Exp.Condition+Household", n = 30) # this tests the power if we have 30 birds in each experimental condition
+table(data.b$Exp.Condition) # except for C, we have >50 birds in each condition. So with more funding we could process samples from all of these birds to increase our power to detect an effect of backyard activities on disease
+sim_ext = extend(model2, within="Exp.Condition+season", n = 30) # this tests the power if we have 30 birds in each experimental condition
 sim2 = powerSim(sim_ext, nsim=100)
-sim2 # Power for Exp.Condition is now 95%, which is great and what we should be going for.
+sim2 # Power for Exp.Condition is now 79%, which is much better and what we should be going for.
 
 
 
