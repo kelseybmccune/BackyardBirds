@@ -18,7 +18,7 @@ setwd("~/Documents/GitHub/BackyardBirds") # set working directory to GitHub fold
 bbDet.o = read.csv("BBDetections.csv") # load RFID data
 bbBio.o = read.csv("BBBiometrics.csv") # load biometrics
 BBDisOld.o = read.csv("BBFecalOld.csv")
-BBDisNew.o = read.csv("BBFecalNew.csv")
+BBDisNew.o = read.csv("BBFecal.csv")
 
 ## Total number of visits per bird
 # Create a new data frame that sums the 1s in AntennaNum column to count the number of visits for each specific bird
@@ -301,3 +301,35 @@ ggplot(pp,aes(bfcoopdist, pathpatches)) +
     axis.title = element_text(size = 17)
   ) 
  # annotate(geom="text", x = 28, y = 6200, label = "p = 0.003",color = "black",size = 6, fontface = "italic")
+
+
+
+#### Power analysis ####
+#See tutorial at this link: https://humburg.github.io/Power-Analysis/simr_power_analysis.html
+#combine biometrics data with fecal sample data
+data.b = bbBio.o[,c(1,2,6,8,9)]
+data.dis = BBDisNew.o[,c(1,2,9,18)]
+colnames(data.b)[3] = "Bird.ID" #Name Bird ID columns the same thing so we can merge these two data frames by this column
+colnames(data.dis)[1] = "Date" #Name Date columns the same thing so we can merge these two data frames by this column
+data = merge(data.b, data.dis, by = c("Bird.ID","Date")) #This excludes any rows that don't have a match between the two data frames. In other words, it excludes birds from data.b that have not yet been tested for diseases.
+data$Positive.[which(data$Positive. == "")]<-NA # dealing with blank cells for samples being processed now
+data$Poultry.Science.[which(data$Poultry.Science. == "")]<-"Y" # dealing with blank cells for samples being processed now
+
+# Add column of 0/1 for positive to be able to run logistic regression
+data$bin.Pos = ifelse(data$Positive. == "Y",1,0) # does not consider N* samples as positive. Does include old chromo agar positive samples though
+data$Exp.Condition = factor(data$Exp.Condition, levels = c("CON","BF","C","BFC")) # change order of levels so that CON is the baseline (rather than BF). This way, in the model the other levels will be compared to CON
+
+library(lme4)
+model = glmer(bin.Pos ~ Exp.Condition + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # more complex, realistic model (requiring a higher sample size)
+
+library(simr)
+sim1 = powerSim(model, nsim=100) # "warning: result might be an observed power calculation" just means that we are using preliminary (observed) data to calculate power rather than simulated data 
+sim1 # Power for Exp.Condition = 75% means we have a 75% chance of detecting an effect of Exp.Condition on disease if it exists... pretty good!
+
+table(data$Exp.Condition) # This shows we have 47 birds in CON, 30 in BF, 11 in C and 10 in BFC with disease data (or will have disease data soon)
+sim_ext = extend(model, within="Exp.Condition+Household", n = 30) # this tests the power if we have 30 birds in each experimental condition
+sim2 = powerSim(sim_ext, nsim=100)
+sim2 # Power for Exp.Condition is now 95%, which is great and what we should be going for.
+
+
+
