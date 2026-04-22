@@ -324,6 +324,7 @@ data$season = ifelse(data$Date < "2025-09-19", "BS", "NBS") # May - Aug is BS, S
 library(lme4)
 model = glmer(bin.Pos ~ Exp.Condition + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # simpler model 
 model2 = glmer(bin.Pos ~ Exp.Condition + season + (1|Species) + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # more complex model based on your analysis section of the AAV grant (might require higher sample size)
+summary(model2)
 library(simr)
 sim1 = powerSim(model2, nsim=100) # higher nsim will take longer to run. 100 simulations takes just a few minutes
 # "warning: result might be an observed power calculation" just means that we are using preliminary (observed) data to calculate power rather than simulated data 
@@ -331,7 +332,7 @@ sim1 # Power for Exp.Condition = 56% means we have a 56% chance of detecting an 
 
 table(data$Exp.Condition) # This shows we have 47 birds in CON, 30 in BF, 11 in C and 10 in BFC with disease data (or will have disease data soon)
 table(data.b$Exp.Condition) # except for C, we have >50 birds in each condition. So with more funding we could process samples from all of these birds to increase our power to detect an effect of backyard activities on disease
-sim_ext = extend(model2, within="Exp.Condition+season", n = 30) # this tests the power if we have 30 birds in each experimental condition
+sim_ext = extend(model2, within="Exp.Condition+season", n = 40) # this tests the power if we have 40 birds in each experimental condition
 sim2 = powerSim(sim_ext, nsim=100)
 sim2 # Power for Exp.Condition is now 79%, which is much better and what we should be going for.
 
