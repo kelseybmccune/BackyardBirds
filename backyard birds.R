@@ -322,9 +322,10 @@ data$Date = as.Date(data$Date, format = '%m/%d/%Y') # to add a season variable, 
 data$season = ifelse(data$Date < "2025-09-19", "BS", "NBS") # May - Aug is BS, Sept - Apr is NBS
 
 library(lme4)
-model = glmer(bin.Pos ~ Exp.Condition + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # simpler model 
+model0 = glm(bin.Pos ~ Exp.Condition + season, data = na.omit(data), family = binomial(link = "logit"))
+model = glmer(bin.Pos ~ Exp.Condition + season + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # simpler model 
 model2 = glmer(bin.Pos ~ Exp.Condition + season + (1|Species) + (1|Household), data = na.omit(data), family = binomial(link = "logit")) # more complex model based on your analysis section of the AAV grant (might require higher sample size)
-summary(model2)
+summary(model0) # random effects don't account for any variance
 library(simr)
 sim1 = powerSim(model2, nsim=100) # higher nsim will take longer to run. 100 simulations takes just a few minutes
 # "warning: result might be an observed power calculation" just means that we are using preliminary (observed) data to calculate power rather than simulated data 
