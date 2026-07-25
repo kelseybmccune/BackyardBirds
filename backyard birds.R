@@ -338,4 +338,25 @@ sim2 = powerSim(sim_ext, nsim=100)
 sim2 # Power for Exp.Condition is now 79%, which is much better and what we should be going for.
 
 
+### Homeowner surveys ####
+part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
+                  Response = c("Y","Y","Y","N","N","N"),
+                  Households = c(4,3,7,10,11,7)
+)
+
+part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
+part$Response = factor(part$Response, levels = c("N", "Y"))
+ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_fill_grey() +
+  theme_bw() + theme(
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 17),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14)
+  ) +
+  #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
+  labs(x = "Survey Question", y = "Number of Households")
+
+detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
 
