@@ -14,7 +14,8 @@ library(lme4)
 library(multcomp)
 
 # Download data as .csv from Google Drive. Load the data into R
-setwd("~/Documents/GitHub/BackyardBirds") # set working directory to GitHub folder where you store the files
+setwd("/Users/alex/Desktop")# set working directory to GitHub folder where you store the files
+setwd("/Users/alex/Documents/GitHub/BackyardBirds")
 bbDet.o = read.csv("BBDetections.csv") # load RFID data
 bbBio.o = read.csv("BBBiometrics.csv") # load biometrics
 BBDisOld.o = read.csv("BBFecalOld.csv")
@@ -50,7 +51,8 @@ plot(SiteDetSum$NumberVisits ~ as.factor(SiteDetSum$Site))
 ## Total birds detected per household
 SBDetSum = aggregate(AntennaNum ~ Site + Bird + Condition, FUN = "sum", data = bbDet.o) 
 SBDetSum$olre = 1:nrow(SBDetSum)
-SBDetSum = aggregate(count ~ Site, FUN = "sum", data = SBDetSum) # number of individuals detected at each house
+SBDetSum$count = 1
+SBDetSum2 = aggregate(count ~ Site, FUN = "sum", data = SBDetSum) # number of individuals detected at each house
 
 #### This is the model for poster dot plot figure ####
 m = glmer(AntennaNum ~ Condition + (1|Site) + (1|olre), family = "poisson", data = SBDetSum)
@@ -59,104 +61,116 @@ summary(m)
 
 ##### Disease #####
 BBDisOld = BBDisOld.o[which(BBDisOld.o$Test == "Chromo Plate"),c(2:3,5:6)]
-BBDisNew = BBDisNew.o[,c(1:2,8:9)]
+BBDisNew = BBDisNew.o[,c(1:2,9:10)]
 colnames(BBDisOld) = c("USGS","Date","Positive","BacResult")
 colnames(BBDisNew) = c("Date","USGS","Positive","BacResult")
 BBDis = rbind(BBDisOld,BBDisNew)
 BBDis$BacResult[which(is.na(BBDis$BacResult))]<-"None"
 table(BBDis$BacResult)
 
-bbMaster = merge(BBDis, bbMaster, by = "USGS", all = T)
-bbMaster$Species[which(is.na(bbMaster$Species))] <- "EnviroSample"
-table(bbMaster$Positive) # 57 N, 52 Y = 48% infected with Salm and/or E. coli
-table(bbMaster$BacResult) # 29 infected birds have Salm or both = 56%, 23 have E. coli
-table(is.na(bbMaster$Positive)) # Fecals processed for 45% of captures
+BBDis$Positive[which(BBDis$Positive == "N ")]<-"N"
 
-table(bbMaster$Species[which(bbMaster$Positive == "Y")]) # NOCA-9, CARW-9, TUTI-6
-boxplot(log(bbMaster$NumberVisits+1) ~ bbMaster$Positive) # more visits, less positive?
-bbMaster$Exp.Condition = factor(bbMaster$Exp.Condition, levels = c("CON","BF","C","BFC")) # reorder factor levels so CON is baseline
+bbMaster2 = merge(BBDis, bbMaster, by = "USGS", all = T)
+bbMaster2$Species[which(is.na(bbMaster2$Species))] <- "EnviroSample"
+table(bbMaster2$Positive) # 80 N, 320 Y = 20% infected with Salm and/or E. coli
+table(is.na(bbMaster2$Positive)) # Fecals processed for 79% of captures
+
+table(bbMaster2$Species[which(bbMaster2$Positive == "Y")]) # NOCA-13, CARW-13, TUTI-7
+boxplot(log(bbMaster2$NumberVisits+1) ~ bbMaster2$Positive) # more visits, less positive?
+bbMaster2$Exp.Condition = factor(bbMaster2$Exp.Condition, levels = c("CON","BF","C","BFC")) # reorder factor levels so CON is baseline
 
 
-bbMaster$Salm = ifelse(bbMaster$BacResult == "None" | bbMaster$BacResult == "E.Coli",0,1) # a column that indicates if sample had salmonella
-# KM CHANGED FROM binPos TO Salm - AF needs to adjust rest of code to replace binPos with Salm
+bbMaster2$Salm = ifelse(bbMaster2$BacResult == "None" | bbMaster2$BacResult == "E.Coli","No","Yes") # a column that indicates if sample had salmonella
+bbMaster2$Salm = ifelse(bbMaster2$BacResult == "", "No", bbMaster2$Salm)
 
-table(bbMaster$binPos, bbMaster$Exp.Condition)
+table(bbMaster2$Salm, bbMaster2$Exp.Condition)
 #     CON BF  C  BFC
 # 0   21  35  8   13
 # 1   13  8   0   3
 
-bbMaster$Both = ifelse(bbMaster$BacResult == "None",0,1) # all bacteria positive birds
-# KM CHANGED FROM binPos3 to Both - AF needs to adjust rest of code
-table(bbMaster$binPos3, bbMaster$Exp.Condition)
-
-det.data = bbMaster[-which(bbMaster$Species == "EnviroSample" | is.na(bbMaster$Positive)),]
+det.data = bbMaster2[-which(bbMaster2$Species == "EnviroSample" | is.na(bbMaster2$Positive)),]
 det.data$olre = 1:nrow(det.data) # poisson models are overdispersed otherwise
-det.data$BacResult = factor(det.data$BacResult, levels = c("None","E.Coli","Salm","Both"))
-det.m <- glmer(NumberVisits ~ BacResult + (1|Species) + (1|Household) + (1|olre), 
+det.m <- glmer(NumberVisits ~ Salm + (1|Species) + (1|Household) + (1|olre), 
                data = det.data, family = "poisson")
 summary(det.m) # no differences - birds with bacterial infections were not detected more at the feeders
+boxplot(log(NumberVisits+1) ~ Salm, data = det.data)
+# So much variation/outliers it is hard to see trends in median visits by Salm
 
+# Instead, let's look at only birds that were detected to see if more visits = more Salm
 ##### This is the model for poster boxplot figure ####
-det.m2 <- glmer(Both ~ NumberVisits + (1|Species) + (1|Household), 
-               data = det.data, family = binomial(link="logit"))
+det.m2 <- glmer(NumberVisits ~ Salm + (1|Species) + (1|Household), 
+               data = det.data[which(det.data$NumberVisits>0),], family = "poisson")
 summary(det.m2) 
+# Birds that make more feeder visits are more likely to have salmonella
+
 #####
-
-det.m3 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|olre), 
-                data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
-anova(det.m2,det.m3) # household random effect is important for model fit
-det.m4 <- glmer(NumberVisits ~ binPos2 + (1|Household) + (1|olre), 
-                data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
-anova(det.m2,det.m4) # species random effect is important for model fit
-
-library(nlme)
-det.m2 <- lme(log(NumberVisits+1) ~ binPos, random = list(Species=~1,Household=~1), 
-                data = det.data[-which(det.data$PitID =="NonTarget"),])
-summary(det.m2) 
-overdisp_fun(det.m2)
+# det.m3 <- glmer(NumberVisits ~ binPos2 + (1|Species) + (1|olre), 
+#                 data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+# anova(det.m2,det.m3) # household random effect is important for model fit
+# det.m4 <- glmer(NumberVisits ~ binPos2 + (1|Household) + (1|olre), 
+#                 data = det.data[-which(det.data$PitID == "NonTarget"),], family = "poisson")
+# anova(det.m2,det.m4) # species random effect is important for model fit
+# 
+# library(nlme)
+# det.m2 <- lme(log(NumberVisits+1) ~ binPos, random = list(Species=~1,Household=~1), 
+#                 data = det.data[-which(det.data$PitID =="NonTarget"),])
+# summary(det.m2) 
+# overdisp_fun(det.m2)
 
 ### Except in the slightly overdispersed Poisson model, probability of infection is unrelated to frequency of detection by RFID
+det.data$Salm = as.factor(det.data$Salm)
+det.data$Salm = factor(det.data$Salm, levels = c("No", "Yes"),
+                       labels = c("Negative","Positive"))
 
-sab = ggplot(det.data, aes(x = as.factor(binPos), y = log(NumberVisits+1)))+
+ggplot(det.data[which(det.data$NumberVisits>0),], aes(x = Salm, y = NumberVisits, fill = Salm))+
   geom_boxplot()+
+  scale_fill_manual(values = c("Negative" = "#8FA369", "Positive" = "#2C4B81")) +
   theme_bw() +
-  theme(axis.title.y = element_blank(), 
-        axis.text.y = element_blank(), 
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.x = element_text(size = 16, face = "bold")
-        ) +
-  scale_x_discrete(labels = c("No", "Yes")) +
-  labs(y = "Number of visits to food", x = "S.enterica detected")
+  theme(
+    axis.text.x = element_text(size = 15, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 17, face = "bold"),
+    strip.text = element_text(size = 17, face = "bold"),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
+  ) +
+  labs(
+    x = "S. enterica Detected",
+    y = "Number of Visits to Food", 
+    fill = "Infection Status",
+    title = "RFID Detections vs Pathogen Pressure")
 
 det.m3 <- glmer(NumberVisits ~ binPos3 + (1|Species) + (1|Household) + (1|olre), 
                 data = det.data, family = "poisson")
 summary(det.m3) # just e.coli, no signficant effect
 
-ecb = ggplot(det.data, aes(x = as.factor(binPos3), y = log(NumberVisits+1)))+
-  geom_boxplot()+
-  theme_bw() +
-  theme(
-    axis.text.x = element_text(size = 14),
-    axis.title.x = element_text(size = 16, face = "bold"),
-    axis.title.y = element_text(size = 16)
-  ) +
-  scale_x_discrete(labels = c("No", "Yes")) +
-  labs(y = "Number of visits to food", x = "E.coli detected")
+# ecb = ggplot(det.data, aes(x = as.factor(binPos3), y = log(NumberVisits+1)))+
+#   geom_boxplot()+
+#   theme_bw() +
+#   theme(
+#     axis.text.x = element_text(size = 14),
+#     axis.title.x = element_text(size = 16, face = "bold"),
+#     axis.title.y = element_text(size = 16)
+#   ) +
+#   scale_x_discrete(labels = c("No", "Yes")) +
+#   labs(y = "Number of visits to food", x = "E.coli detected")
 
 ggarrange(ecb,sab)
 
 #### Disease by household condition ####
+bbMaster2$binPos  = ifelse(bbMaster2$Salm == "No",0,1)
+bbMaster3 = bbMaster2[-which(bbMaster2$Species == "EnviroSample"),]
+bbMaster3 = bbMaster3[-which(is.na(bbMaster3$binPos)),]
 dis.m <- glmer(binPos ~ Exp.Condition + (1|Species) + (1|Household),
-               data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+               data = bbMaster3, family = binomial(link="logit"), 
                control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
 summary(dis.m) # Fit is singular, household accounts for no variance
-dis.m2 = dis.m <- glmer(binPos ~ Exp.Condition + (1|Species),
-                        data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+dis.m2 <- glmer(binPos ~ Exp.Condition + (1|Species),
+                        data = bbMaster3, family = binomial(link="logit"), 
                         control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
 anova(dis.m,dis.m2) # Household does not add to model fit, remove this random effect
-summary(dis.m2)
-#BF houses less likely to be Salm positive than CON: ß = -1.54, p = 0.03; Number of visits doesn't affect probability of positive
+summary(dis.m2) # No conditions have more Salmonella than CON
 
 library(emmeans)
 dis.emm <- emmeans(dis.m2,pairwise ~ Exp.Condition,type="response")
