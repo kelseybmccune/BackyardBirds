@@ -339,16 +339,29 @@ sim2 # Power for Exp.Condition is now 79%, which is much better and what we shou
 
 
 ### Homeowner surveys ####
-part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
-                  Response = c("Y","Y","Y","N","N","N"),
-                  Households = c(4,3,7,10,11,7)
-)
 
-part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
-part$Response = factor(part$Response, levels = c("N", "Y"))
-ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
+
+#vals = c("#2C4B81","#8FA369")
+#negative blue, positive green
+
+#part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
+#part$Response = factor(part$Response, levels = c("N", "Y"))
+
+part = read.csv("SimpleSurveyData.csv")
+# all 3 BFC houses cleaned the chicken coops but not the bird feeders, so let's exclude their data for this preliminary figure 
+table(part$ExpCondition, part$CleanFeeder) # 4 clean, 3 don't
+table(part$ExpCondition, part$CleanChicken) # 5 clean, 2 don't
+table(part$ExpCondition, part$WashHands) # 2 do, 12 don't
+table(part$ExpCondition, part$DiseaseConcern) # 6 are concerned, 8 are not
+
+part.simp = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
+                   Response = c("Y","Y","Y","N","N","N"),
+                   Households = c(9,2,6,5,12,8)
+ )
+
+ggplot(part.simp, aes(fill=Response, y=Households, x=Question)) + 
   geom_bar(position="stack", stat="identity") +
-  scale_fill_grey() +
+  scale_fill_manual(values = c("#2C4B81","#8FA369")) +
   theme_bw() + theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
@@ -358,5 +371,5 @@ ggplot(part, aes(fill=Response, y=Households, x=Question)) +
   #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
   labs(x = "Survey Question", y = "Number of Households")
 
-detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
+#detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
 
