@@ -47,60 +47,60 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 7/10/2025,3011-99774,Ogletree,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,E.Coli,NA,,,22 October 2025 21:10,E. coli: Incubator,,,,N
 6/12/2025,3171-38517,Paint Rock,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,Both,22 October 21:10,,,,E. coli: Incubator,,,small colonies,N
 3/2/2026,3241-88110,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,Y,,6 March 2026 16:20,,,cryotube - 7 March 2026 17:30,,,,,Y
-2/12/2026,3171-38507,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,,, slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
+2/12/2026,3171-38507,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,, slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
 2/9/2026,3010-60037,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,,Y
 2/12/2026,3010-60018,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,,Y
 3/2/2026,3010-60056,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,,Y
 10/2/2025,3011-99721,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,Y,,6 March 2026 16:20,,,cryotube - 7 March 2026 17:30,,,,,Y
 12/3/2025,1352-66727,?,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,Site missing from BPW and data sheet?,Y
 11/30/2025,3010-60016,343 Lee Rd 2184,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,USGS # not on data sheet,Y
-12/3/2025,3010-60017,?,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,,,slant- 3/6/2026 16:30:00,,,,Site missing from BPW and data sheet? Subbing growth onto slant for SVDL,Y
-9/25/2025,3011-99779,1011 Lee Rd 78,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,,,slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
-2/5/2026,3171-38506,Fisheries 2,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,,slant - 3/9/2026 1500,,,,Subbing growth onto slant for SVDL,Y
+12/3/2025,3010-60017,?,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,slant- 3/6/2026 16:30:00,,,,Site missing from BPW and data sheet? Subbing growth onto slant for SVDL,Y
+9/25/2025,3011-99779,1011 Lee Rd 78,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
+2/5/2026,3171-38506,Fisheries 2,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,slant - 3/9/2026 1500,,,,Subbing growth onto slant for SVDL,Y
 3/5/2026,2890-93050,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,,-80 Ani's lab,,,,Y
 10/30/2025,3241-88104,339 Lee Rd 2182,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,,-80 Ani's lab,,,,Y
-3/5/2026,3010-60041,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/5/2026,3010-60041,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 3/5/2026,3010-60043,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,,-80 Ani's lab,,,,Y
 3/5/2026,3010-60042,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,,-80 Ani's lab,,,,Y
-11/5/2025,3010-60014,WW,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+11/5/2025,3010-60014,WW,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 3/5/2026,3171-38508,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,,-80 Ani's lab,,,,Y
-2/9/2026,3241-88107,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-2/9/2026,3010-60036,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-2/9/2026,3010-60037,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-3/13/2026,3231-05205,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-3/13/2026,3231-05206,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-3/13/2026,3011-99706,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-3/13/2026,3010-60045,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3241-88107,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60036,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60037,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05205,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05206,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3011-99706,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3010-60045,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 3/13/2026,3010-60044,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
 3/13/2026,3010-60046,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
-10/30/2025,3241-88105,339 LEE RD 2182,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+10/30/2025,3241-88105,339 LEE RD 2182,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 6/18/2025,3011-37902,Kreher,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
-6/13/2025,3171-38521,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-6/12/2025,3011-99792,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Klebsiella sp.,Y
-6/12/2025,3011-99797,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Serratia sp.,Y
-3/30/2026,3241-88111,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+6/13/2025,3171-38521,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+6/12/2025,3011-99792,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Klebsiella sp.,Y
+6/12/2025,3011-99797,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Serratia sp.,Y
+3/30/2026,3241-88111,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 2/10/2026,1803-24404,Shadowwood,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,,Y
 5/15/2025,3010-60022,Practicum,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,,Y
-5/28/2025,1803-24403,Ogletree,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+5/28/2025,1803-24403,Ogletree,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 3/3/2026,3011-99727,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,,Y
 10/2/2025,3241-88101,Shadowwood,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,,Y
-3/3/2026,3010-60039,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/3/2026,3010-60039,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 3/3/2026,3010-60040,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,,Y
-2/9/2026,3241-88107,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-2/9/2026,3010-60036,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-2/9/2026,3010-60037,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3241-88107,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60036,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60037,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
 12/9/2025,Chicken,1011 Lee Rd,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,Y,,,,,cryotube - 3 April 2026 0900,-80 Ani's lab,,,,Y
-12/3/2025,Chicken,204 Lee Rd,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
-3/13/2026,3231-05206,861 Ogletree,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,,slant- 4/14/2026 13:35,,,,Last of BPW sample used ,Y
-4/6/2026,Chicken,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,,slant- 4/14/2026 13:35,,,,,Y
+12/3/2025,Chicken,204 Lee Rd,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05206,861 Ogletree,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,slant- 4/14/2026 13:35,,,,Last of BPW sample used ,Y
+4/6/2026,Chicken,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,slant- 4/14/2026 13:35,,,,,Y
 4/6/2026,3010-60058,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N ,,,,,,,,,,Y
 4/6/2026,3241-88104,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,,cryotube- 4/14/2026 13:35,,,,,Y
 4/6/2026,3010-60057,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,,cryotube- 4/14/2026 13:35,,,,,Y
-4/2/2026,Chicken,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,,slant- 4/14/2026 13:35,,,,,Y
+4/2/2026,Chicken,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,slant- 4/14/2026 13:35,,,,,Y
 4/2/2026,3010-60047,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,,,,,Last of BPW sample used ,Y
 4/2/2026,3010-60047,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,,cryotube- 4/14/2026 13:35,,,,,Y
-4/2/2026,3010-60048,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,,slant- 4/14/2026 13:35,,,,,Y
-4/2/2026,3171-38510,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,,slant- 4/14/2026 13:35,,,,,Y
+4/2/2026,3010-60048,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,slant- 4/14/2026 13:35,,,,,Y
+4/2/2026,3171-38510,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,slant- 4/14/2026 13:35,,,,,Y
 6/10/2025,3010-60023,Lee Rd 78,21 April 2026,AF,21 April 2026 12:30,23 April 2026 15:00,4/27/2026 13:30,N,,,,,,,,,,
 10/22/2025,3171-38504,Shadowwood,21 April 2026,AF,21 April 2026 12:30,23 April 2026 15:00,4/27/2026 13:30,N,,,,,,,,,,
 6/12/2025,3011-99794,Paint Rock,21 April 2026,AF,21 April 2026 12:30,23 April 2026 15:00,4/27/2026 13:30,N,,,,,,,,,,
@@ -172,7 +172,7 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 4/6/2026,Chicken,339 Lee Rd,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,,,,,,,
 4/9/2025,Chicken,Evergreen,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,7 July 2026 14:30,,,,,was suspect but not positive salm,
 6/25/2026,1823-90630,Marler,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,,,,,,,
-6/29/2026,21352-66731,Shadowwood,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,Y,,,,7 July 2026 14:30,TSI- 08 July 12 pm,,,,,
+6/29/2026,1352-66731,Shadowwood,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,Y,,,,7 July 2026 14:30,TSI- 08 July 12 pm,,,,,
 4/18/2026,3010-60054,Paint Rock,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,,,,,,,
 4/16/2025,Chicken,1011 Lee Rd,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,,,,,,,
 6/10/2025,Chicken,1011 Lee Rd,7/2/2026,GS,2 June 2026 15:40,4 July 2026 11:40,6 July 2026 10:50,N,,,,,,,,,,
@@ -199,12 +199,12 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 2/26/2025,3011-99720,Shadowwood ,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 4/30/2025,3011-99780,Ogletree,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 6/30/2026,3011-99778,Evergreen,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
-4/23/2026,3231-05212,Weagle Woods,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,Y?,,,,"Combined with 99789, need to re-streak both sides",,,,,,
+4/23/2026,3231-05212,Weagle Woods,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,Y,,,,"Combined with 99789, need to re-streak both sides",,,,,,
 7/7/2026,3241-88125,Fisheries 1,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 6/25/2026,HOSP,Marler,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 4/13/2026,3010-60078,Marler,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 6/25/2026,3241-88122,Marler,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
-6/18.2026,3011-99789,1011 Lee Rd,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,Y,,,,"Combined with 05212, need to re-streak both sides",,,,,,
+6/18/2026,3011-99789,1011 Lee Rd,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,Y,,,,"Combined with 05212, need to re-streak both sides",,,,,,
 7/7/2026,3241-88127,Fisheries 1,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,,,,,Missing plate,,,,,,
 7/2/2026,1352-66732,204 Lee Rd,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
 4/9/2026,3010-60049,Ralph's,7/7/2026,GS,7 July 2026 14:30,8 July 2026 3:00,10 July 2026 3:30,N,,,,,,,,,,
@@ -261,7 +261,7 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 6/12/2025,3011-99796,Paint Rock,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
 8/19/2024,BRTH,Jenkins,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
 3/25/2024,3010-60001,Jenkins,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
-6//11/2024,1352-66709,2317 Ware Rd,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
+6/11/2024,1352-66709,2317 Ware Rd,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
 8/19/2024,3011-99746,Jenkins,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
 5/12/2023,1352-66702,Jenkins,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
 10/29/2024,Chicken,Shadowwood,7/10/2026,GS,10 July 2026 2:40,12 July 2026,14 July 2026,N,,,,,,,,,,
@@ -328,7 +328,7 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 9/19/2025,3171-38501,204 Lee Rd,7/13/2026,GS,13 July 2026,14 July 2026,16 July 2026,N,,,,,,,,,,
 6/12/2025,3171-38516,Paint Rock,7/13/2026,GS,13 July 2026,14 July 2026,16 July 2026,N,,,,,,,,,,
 6/12/2025,1352-66742,Paint Rock,7/13/2026,GS,13 July 2026,14 July 2026,16 July 2026,N,,,,,,,,,,
-11 July 2026,3140-58903,Weagle Woods,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,RECAP,
+7/11/2026,3140-58903,Weagle Woods,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,RECAP,
 7/21/2026,1352-66734,Fisheries 2,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
 7/16/2026,3241-88156,Ogletree,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
 7/16/2026,3140-58905,Ogletree,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
