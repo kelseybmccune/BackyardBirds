@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incubation,RV incubation,Chromo/XLD Incubation,Positive?,"Salm, E.Coli or Both?",Second Incubation (McConkey or XLD),SalmPositiveQuads,XLD Re-Streak,Slant/cryotube Incubation,Slant/cryotube Location,ViralResults,SalmResults,Notes,Poultry Science?
 6/10/2025,3011-99786,Lee Rd,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,,NA,NA,,,Starting new Cornell protocol 28 Aug 2025,N
 6/10/2025,3011-99790,Lee Rd,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,,NA,NA,,,,N
@@ -350,3 +351,118 @@ Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incu
 7/14/2026,3241-88134,339 Lee Rd 2182,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
 7/16/2026,3010-60089,Ogletree,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
 7/11/2026,3171-38525,Weagle Woods,7/23/2026,AF,7/23/2026 1300,7/27/2026 1700,7/30/2026 1700,,,,,,,,,,,
+=======
+Date Sample Collected,Bird ID,Site,Date processing started,Experimenter,BPW Incubation,RV incubation,Chromo/XLD Incubation,Positive?,"Salm, E.Coli or Both?",Second Incubation (McConkey or XLD),SalmPositiveQuads,Slant/cryotube Incubation,Slant/cryotube Location,ViralResults,SalmResults,Notes,Poultry Science?
+6/10/2025,3011-99786,Lee Rd,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,NA,NA,,,Starting new Cornell protocol 28 Aug 2025,N
+6/10/2025,3011-99790,Lee Rd,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,NA,NA,,,,N
+6/12/2025,3171-38515,Paint Rock,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,NA,NA,,,,N
+8/7/2025,3010-60030,Fisheries 1,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,N,NA,NA,NA,NA,NA,,,,N
+6/12/2025,1352-66742,Paint Rock,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,Y,Both,2 Sept 2025 10:25,"1,2,3",e. coli: 2 Sept 2025 10:25; salm: 4 Sept 2025 9:15,e.coli: fridge box; salm: fridge box,,,,N
+6/10/2025,3011-99757,Lee Rd 78,28 Aug 2025,KM,28 Aug 2025 9:45,NA,29 Aug 2025 13:15,Y,E.Coli,NA,NA,2 Sept 2025 10:25,e.coli: fridge box,,,Not sure if colonies grew?,N
+6/10/2025,3011-99791,Lee Rd 78,8 Sept 2025,"KM, GS, LW",8 Sept 2025 9:25,NA,                  9 Sept 2025 18:00,N,NA,NA,NA,NA,NA,,,,N
+5/28/2025,3171-38514,Ogletree,8 Sept 2025,"KM, GS, LW",8 Sept 2025 9:25,NA,                  9 Sept 2025 18:00,N,NA,NA,NA,NA,NA,,,,N
+2/26/2025,3011-99764,Marler,8 Sept 2025,"KM, GS, LW,AF",8 Sept 2025 9:25,NA,                  9 Sept 2025 18:00,Y,Salm,11 Sept 2025  12:15pm,ALL,12 Sept 2025 13:08,,,,,N
+5/14/2025,3011-99782,Practicum,8 Sept 2025,"KM, GS, LW",8 Sept 2025 9:25,NA,                  9 Sept 2025 18:00,N,NA,NA,NA,NA,NA,,,,N
+5/28/2025,3010-60003,Ogletree,8 Sept 2025,"KM, GS, LW",8 Sept 2025 9:25,NA,                  9 Sept 2025 18:00,N,NA,NA,NA,NA,NA,,,,N
+5/14/2025,3011-99784,Practicum,12 Sept 2025,AF,11 Sept 2025 12:47 ,NA,12 Sept 2025 13:08,Y,E.Coli,NA,NA,14 Sept 2025 13:08,e.coli: fridge box,,,,N
+6/10/2025,3011-99789,Lee Rd 78,11 Sept 2025,AF,11 Sept 2025 12:47 ,NA,12 Sept 2025 13:08,Y,Salm,14 Sept 2025 1:30pm,"1,2",,,,,,N
+6/10/2025,3011-99788,Lee Rd 78,12 Sept 2025,AF,11 Sept 2025 12:47 ,NA,12 Sept 2025 13:08,Y,E.Coli,NA,NA,14 Sept 2025 13:08,,,,,N
+5/14/2025,3010-60021,Practicum,12 Sept 2025,AF,11 Sept 2025 12:47 ,NA,12 Sept 2025 13:08,N,NA,NA,NA,NA,,,,,N
+5/28/2025,1352-66739,Ogletree,12 Sept 2025,AF,11 Sept 2025 12:47 ,NA,12 Sept 2025 13:08,N,NA,NA,NA,NA,,,,,N
+9/19/2025,3171-38501,204 Lee Rd,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+8/28/2025,3011-99777,Evergreen,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+8/28/2025,3011-99776,Evergreen,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+9/19/2025,3231-05203,204 Lee Rd,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+8/28/2025,3010-60031,Evergreen,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+8/28/2025,3011-99775,Evergreen,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+8/28/2025,3011-99778,Evergreen,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,Y,E.Coli,NA,NA,6 Oct 2025 9:30,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+9/19/2025,3171-38502,204 Lee Rd,30 Sept 2025,KM,30 Sept 2025 8:55,NA,1 Oct 2025 14:40,N,NA,NA,NA,NA,,,,"Need to redo - Incubator = 35C. Checked 2 Oct, very little growth, left for another day. 3 Oct, still very little growth.",N
+10/3/2025,3171-38503,Fisheries 2,4 Oct 2025,KM,4 Oct 2025 14:50,NA,6 Oct 2025 9:30,Y,Both,7 Oct 2025,ALL,E. Coli = 7 Oct 2025 11:45; Salm. = 8 Oct 2025 13:47,e.coli: fridge box; salm: fridge box,,,Paper data sheet,N
+10/3/2025,3231-05204,Fisheries 2,4 Oct 2025,KM,4 Oct 2025 14:50,NA,6 Oct 2025 9:30,N,NA,,,,,,,Paper data sheet,N
+7/7/2025,3011-99773,Ogletree,4 Oct 2025,KM,4 Oct 2025 14:50,NA,6 Oct 2025 9:30,N,NA,,,,,,,Paper data sheet,N
+6/12/2025,3011-99793,Paint Rock,4 Oct 2025,KM,4 Oct 2025 14:50,NA,6 Oct 2025 9:30,Y,E.Coli,,,,,,,Paper data sheet,N
+7/10/2025,3011-99772,Ogletree,4 Oct 2025,KM,4 Oct 2025 14:50,NA,6 Oct 2025 9:30,N,NA,,,,,,,Paper data sheet,N
+7/8/2025,3011-99770,Fisheries 1,14 October 2025,GS,14 Oct 2025 13:05,NA,15 October 2025 14:45,N,NA,NA,NA,NA,,,,,N
+10/9/2025,3241-88102,WW,14 October 2025,APG,14 Oct 14:25,NA,15 October 2025 17:30,N,NA,NA,NA,NA,,,,,N
+10/9/2025,3171-38526,WW,14 October 2025,APG,14 Oct 14:25,NA,15 October 2025 17:30,Y,E.Coli,NA,NA,17 Oct 2025,e.coli: fridge box,,,,N
+10/9/2025,3241-88103,WW,14 October 2025,APG,14 Oct 14:25,NA,15 October 2025 17:30,Y,E.Coli,NA,NA,17 Oct 2025,e.coli: fridge box,,,,N
+6/25/2025,3011-99799,Shadowwood,14 October 2025,GS,14 October 2025,NA,15 October 2025 14:45,Y,E.Coli,NA,NA,17 Oct 2025,e.coli: fridge box,,,,N
+7/8/2025,3011-99800,Fisheries 1,14 October 2025,GS,14 October 2025,NA,15 October 2025 14:45,Y,Salm,REDO,REDO,REDO,REDO,,,REDO,N
+7/10/2025,3010-60028,Olgetree,14 October 2025,AS,14 October 2025,NA,15 October 2025 14:45,N,NA,NA,NA,NA,,,,,N
+6/12/2025,3171-38518,Paint Rock,14 October 2025,AS,14 October 2025,NA,15 October 2025 14:45,Y,E.Coli,NA,NA,17 Oct 2025,,,,,N
+6/13/2025,3171-38520,Paint Rock,19 October 2025,AG,19 October 2025 11:44,NA,20 October 2025 12:30,Y,Both,21 October 2025 17:35,ALL,22 October 2025 21:10,"E. coli: fridge box, Salm: Incubator",,,very small colonies,N
+6/13/2025,1352-66743,Paint Rock,19 October 2025,AG,19 October 2025 11:44,NA,20 October 2025 12:30,Y,Both,21 October 2025 17:35,ALL,22 October 2025 21:10,"E. coli: fridge box, salm:incubator ",,,small/no colonies,N
+6/18/2025,3011-99798,Kreher,19 October 2025,AG,19 October 2025 11:44,NA,20 October 2025 12:30,N,NA,NA,NA,NA,NA,,,no growth,N
+6/12/2025,3171-38516,Paint Rock,19 October 2025,AG,19 October 2025 11:44,NA,20 October 2025 12:30,Y,Both,21 October 2025 17:35,ALL,22 October 2025 21:10,"E. coli: fridge box, salm:incubator ",,,,N
+6/18/2025,3010-60025,Kreher,19 October 2025,AG,19 October 2025 11:44,NA,20 October 2025 12:30,N,NA,NA,NA,NA,NA,,,no growth,N
+7/8/2025,3011-99771,Fisheries 1,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,N,NA,NA,NA,NA,NA,,,no growth,N
+7/10/2025,1352-66747,Ogletree,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,Both,22 October 21:10,,,E.coli: incubator,,,hard to find separate colonies,N
+6/13/2025,1352-66744,Paint Rock,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,Both,22 October 21:10,,,E. coli: Incubator,,,,N
+7/10/2025,3011-99774,Ogletree,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,E.Coli,NA,,22 October 2025 21:10,E. coli: Incubator,,,,N
+6/12/2025,3171-38517,Paint Rock,20 October 2025,GS,20 October 2025 12:15,NA,21 October 2025 19:00,Y,Both,22 October 21:10,,,E. coli: Incubator,,,small colonies,N
+3/2/2026,3241-88110,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,Y,,6 March 2026 16:20,,cryotube - 7 March 2026 17:30,,,,,Y
+2/12/2026,3171-38507,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,, slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60037,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,Y
+2/12/2026,3010-60018,1011 Lee Rd (Bailey),2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,Y
+3/2/2026,3010-60056,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,,Y
+10/2/2025,3011-99721,Shadowwood,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,Y,,6 March 2026 16:20,,cryotube - 7 March 2026 17:30,,,,,Y
+12/3/2025,1352-66727,?,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,Site missing from BPW and data sheet?,Y
+11/30/2025,3010-60016,343 Lee Rd 2184,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N,,,,,,,,USGS # not on data sheet,Y
+12/3/2025,3010-60017,?,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,,slant- 3/6/2026 16:30:00,,,,Site missing from BPW and data sheet? Subbing growth onto slant for SVDL,Y
+9/25/2025,3011-99779,1011 Lee Rd 78,2 March 2026,AF,2 March 2026 13:15,3 March 2026 15:05,5 March 2026 15:10,N*,,,,slant- 3/6/2026 16:30:00,,,,Subbing growth onto slant for SVDL,Y
+2/5/2026,3171-38506,Fisheries 2,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,slant - 3/9/2026 1500,,,,Subbing growth onto slant for SVDL,Y
+3/5/2026,2890-93050,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,-80 Ani's lab,,,,Y
+10/30/2025,3241-88104,?,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,-80 Ani's lab,,,,Y
+3/5/2026,3010-60041,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/5/2026,3010-60043,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,-80 Ani's lab,,,,Y
+3/5/2026,3010-60042,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,-80 Ani's lab,,,,Y
+11/5/2025,3010-60014,WW,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N*,,,,slant - 3/9/2026 1500,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/5/2026,3171-38508,Kreher,5 March 2026,LW,5 March 2026 14:20,3/6/2026 15:10,7 March 17:00,N,,,,,-80 Ani's lab,,,,Y
+2/9/2026,3241-88107,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60036,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60037,343 LEE RD 2184,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05205,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05206,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3011-99706,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3010-60045,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3010-60044,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
+3/13/2026,3010-60046,Glenn?,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
+10/30/2025,3241-88105,339 LEE RD 2182,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+6/18/2025,3011-37902,Kreher,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,,Y
+6/13/2025,3171-38521,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,slant - 3/23/2026 1630,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+6/12/2025,3011-99792,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Klebsiella sp.,Y
+6/12/2025,3011-99797,Paint Rock,18 March 2026,AF,18 March 2026 12:00,19 March 2026 15:30,20 March 2026 17:45,N*,,,,cryotube- 3/23/2026 1630,-80 Ani's lab,,,Serratia sp.,Y
+3/30/2026,3241-88111,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/10/2026,1803-24404,Shadowwood,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,Y
+5/15/2025,3010-60022,Practicum,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,Y
+5/28/2025,1803-24403,Ogletree,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/3/2026,3011-99727,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,Y
+10/2/2025,3241-88101,Shadowwood,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,Y
+3/3/2026,3010-60039,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/3/2026,3010-60040,Jenkins,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N,,,,,,,,,Y
+2/9/2026,3241-88107,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60036,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+2/9/2026,3010-60037,343 Lee Rd 2184,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+12/9/2025,Chicken,1011 Lee Rd,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,Y,,,,cryotube - 3 April 2026 0900,-80 Ani's lab,,,,Y
+12/3/2025,Chicken,204 Lee Rd,30 March 2026,AF,30 March 2026 13:00,31 March 2026 14:30,1 April 2026 18:15,N*,,,,slant - 4/03/2026 0900,Fridge Ani's lab,,,Subbing growth onto slant for SVDL,Y
+3/13/2026,3231-05206,861 Ogletree,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,slant- 4/14/2026 13:35,,,,Last of BPW sample used ,Y
+4/6/2026,Chicken,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,slant- 4/14/2026 13:35,,,,,Y
+4/6/2026,3010-60058,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N ,,,,,,,,,Y
+4/6/2026,3241-88104,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,cryotube- 4/14/2026 13:35,,,,,Y
+4/6/2026,3010-60057,339 Lee Rd 2182,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,cryotube- 4/14/2026 13:35,,,,,Y
+4/2/2026,Chicken,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,slant- 4/14/2026 13:35,,,,,Y
+4/2/2026,3010-60047,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N,,,,,,,,Last of BPW sample used ,Y
+4/2/2026,3010-60047,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,Y,,,,cryotube- 4/14/2026 13:35,,,,,Y
+4/2/2026,3010-60048,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,slant- 4/14/2026 13:35,,,,,Y
+4/2/2026,3171-38510,204 Lee Rd,8 April 2026,AF,8 April 2026 11:30,10 April 2026 9:40,13 April 2026 10:37,N*,,,,slant- 4/14/2026 13:35,,,,,Y
+6/10/2025,3010-60023,Lee Rd 78,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+10/22/2025,3171-38504,Shadowwood,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+6/12/2025,3011-99794,Paint Rock,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+10/23/2025,3010-60032,Fisheries1,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+10/9/2025,3171-38525,Weagle,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+4/19/2026,3171-38546,Paint Rock,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+4/19/2026,3010-60079,Paint Rock,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+4/19/2026,3231-05210,Paint Rock,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+4/19/2026,1352-66742,Paint Rock,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+4/13/2026,3171-38550,Marler ,21 April 2026,AF,21 April 2026 12:30,,,,,,,,,,,,
+>>>>>>> parent of c5f60ea (restored changes after fetch)

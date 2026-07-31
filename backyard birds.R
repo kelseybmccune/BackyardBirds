@@ -339,7 +339,6 @@ sim2 # Power for Exp.Condition is now 79%, which is much better and what we shou
 
 
 ### Homeowner surveys ####
-<<<<<<< Updated upstream
 
 
 #vals = c("#2C4B81","#8FA369")
@@ -364,20 +363,6 @@ ggplot(part.simp, aes(fill=Response, y=Households, x=Question)) +
   geom_bar(position="stack", stat="identity") +
   scale_fill_manual(values = c("#2C4B81","#8FA369")) +
   theme_bw() + theme(
-=======
-part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
-                  Response = c("Y","Y","Y","N","N","N"),
-                  Households = c(6,5,4,1,2,3)
-)
-
-part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
-part$Response = factor(part$Response, levels = c("N", "Y"))
-ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
-  geom_bar(position="stack", stat="identity", "fill", color = "black", linewidth = 0.3) +
-  scale_fill_manual(values = c("Negative" = "#2C4B81", "Positive" = "#8FA369")) +
-  scale_y_continuous(labels = scales::percent_format()) +
-  theme_bw() +  theme_bw() + theme(
->>>>>>> Stashed changes
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
     legend.title = element_text(size = 15),
