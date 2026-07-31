@@ -16,7 +16,6 @@ library(multcomp)
 # Download data as .csv from Google Drive. Load the data into R
 setwd("/Users/alex/Desktop")# set working directory to GitHub folder where you store the files
 setwd("/Users/alex/Documents/GitHub/BackyardBirds")
-setwd("~/Documents/GitHub/BackyardBirds") # Kelsey's file path
 bbDet.o = read.csv("BBDetections.csv") # load RFID data
 bbBio.o = read.csv("BBBiometrics.csv") # load biometrics
 BBDisOld.o = read.csv("BBFecalOld.csv")
@@ -142,9 +141,9 @@ ggplot(det.data[which(det.data$NumberVisits>0),], aes(x = Salm, y = NumberVisits
     fill = "Infection Status",
     title = "RFID Detections vs Pathogen Pressure")
 
-# det.m3 <- glmer(NumberVisits ~ binPos3 + (1|Species) + (1|Household) + (1|olre), 
-#                 data = det.data, family = "poisson")
-# summary(det.m3) # just e.coli, no signficant effect
+det.m3 <- glmer(NumberVisits ~ binPos3 + (1|Species) + (1|Household) + (1|olre), 
+                data = det.data, family = "poisson")
+summary(det.m3) # just e.coli, no signficant effect
 
 # ecb = ggplot(det.data, aes(x = as.factor(binPos3), y = log(NumberVisits+1)))+
 #   geom_boxplot()+
@@ -157,7 +156,7 @@ ggplot(det.data[which(det.data$NumberVisits>0),], aes(x = Salm, y = NumberVisits
 #   scale_x_discrete(labels = c("No", "Yes")) +
 #   labs(y = "Number of visits to food", x = "E.coli detected")
 
-#ggarrange(ecb,sab)
+ggarrange(ecb,sab)
 
 #### Disease by household condition ####
 bbMaster2$binPos  = ifelse(bbMaster2$Salm == "No",0,1)
@@ -167,90 +166,85 @@ dis.m <- glmer(binPos ~ Exp.Condition + (1|Species) + (1|Household),
                data = bbMaster3, family = binomial(link="logit"), 
                control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
 summary(dis.m) # Fit is singular, household accounts for no variance
-
-#### This is the model for the barplot for the poster
 dis.m2 <- glmer(binPos ~ Exp.Condition + (1|Species),
                         data = bbMaster3, family = binomial(link="logit"), 
                         control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
 anova(dis.m,dis.m2) # Household does not add to model fit, remove this random effect
 summary(dis.m2) # No conditions have more Salmonella than CON
 
-library(emmeans) # check for pairwise differences
+library(emmeans)
 dis.emm <- emmeans(dis.m2,pairwise ~ Exp.Condition,type="response")
 summary(dis.emm) # no pairwise differences between conditions though
 plot(dis.emm$emmeans, comparisons = T, adjust = F) 
 dis.emm$contrasts %>%
   summary(infer = T)
-#no significant pairwise differences
 
+#### This is the model for the barplot for the poster
+dis.m3 <- glmer(Both ~ Exp.Condition + (1|Species),
+                        data = bbMaster[-which(bbMaster$Species == "EnviroSample"),], family = binomial(link="logit"), 
+                        control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1000000)))
+summary(dis.m3) # no difference in E.coli by site condition
 
-tmp = bbMaster3[,c(3,7,22:23)]
+tmp = bbMaster[,c(4,7,21:23)]
+tmp = tmp[-which(is.na(tmp$BacResult))]
+tmp = tmp[-which(is.na(tmp$BacResult)),]
+tmp = tmp[-which(is.na(tmp$Exp.Condition)),]
 tmp$count = 1
-tmp2 = aggregate(count ~ Exp.Condition, data = tmp, FUN = "sum")
+tmp2 = aggregate(count ~ BacResult + Exp.Condition, data = tmp, FUN = "sum")
+tmp2$BacResult = factor(tmp2$BacResult, levels = c("E.Coli","Salm","Both","None"))
 levels(tmp2$Exp.Condition) = c("Control","Bird Feeder","Chickens","Both")
-tmp3 = aggregate(binPos ~ Exp.Condition, data = tmp, FUN = "sum")
-levels(tmp3$Exp.Condition) = c("Control","Bird Feeder","Chickens","Both")
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Control",34,43)
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Chickens",8,tmp2$totals)
+tmp2$totals = ifelse(tmp2$Exp.Condition == "Both", 16, tmp2$totals)
+tmp2$perc = round((tmp2$count/tmp2$totals)*100)
 
-cond.data = merge(tmp2, tmp3, by = "Exp.Condition")
-cond.data$perc = round((cond.data$binPos/cond.data$count)*100)
-cond.data2 = data.frame(Site.Condition = c("Control","Bird Feeder","Chickens","Both","Control","Bird Feeder","Chickens","Both"),
-                       Infection.Status = c("Y","Y","Y","Y","N","N","N","N"),
-                       Number = c(11,8,0,3,119,130,32,45)
+sa = ggplot(tmp2[which(tmp2$BacResult == "Salm" | tmp2$BacResult == "Both"),], aes(y = perc, x=""), fill = Exp.Condition) + 
+  geom_bar(stat = "identity", aes(fill = Exp.Condition)) +
+  scale_fill_manual(values = c("#132b43","#6a89a7","#cccccc"))+
+  coord_polar("y", start=0) +
+  theme_void() + theme(
+    legend.position = "none",
+    plot.title = element_text(size = 14, face = "bold",hjust = 0.5)
+  ) +
+  labs(title = "S. enterica positive birds")
+
+ec = ggplot(tmp2[which(tmp2$BacResult == "E.Coli" | tmp2$BacResult == "Both"),], aes(y = perc, x=""), fill = Exp.Condition) + 
+  geom_bar(stat = "identity", aes(fill = Exp.Condition)) +
+  scale_fill_manual(values = c("#132b43","#6a89a7","#8c8c8c","#cccccc"))+
+  coord_polar("y", start=0) +
+  theme_void() + theme(
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
+  ) +
+  labs(fill = "Site type", title = "E. coli positive birds")
+
+ggarrange(ec,sa,common.legend = T)
+
+boxplot(bbMaster$binPos2 ~ bbMaster$Exp.Condition)
+
+### Homeowner surveys ####
+
+part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
+                  Response = c("Y","Y","Y","N","N","N"),
+                  Households = c(4,3,7,10,11,7)
 )
 
-ggplot(cond.data2, aes(y = Number, x=Site.Condition, fill = Infection.Status)) + 
-  geom_bar(position = "stack", stat="identity") +
-  scale_fill_manual(values = c("#2C4B81","#8FA369")) +
-  theme_bw() +
-  theme(
-    axis.text.x = element_text(size = 15, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 15),
+part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
+part$Response = factor(part$Response, levels = c("N", "Y"))
+ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_fill_grey() +
+  theme_bw() + theme(
+    axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
-    legend.title = element_text(size = 17),
-    legend.text = element_text(size = 15),
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 14)
   ) +
-  labs(title = "Disease Prevalence by Site Condition",
-       x = "Site Condition", fill = "Infection Status")
+  #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
+  labs(x = "Survey Question", y = "Number of Households")
 
-
-# ec = ggplot(tmp2[which(tmp2$BacResult == "E.Coli" | tmp2$BacResult == "Both"),], aes(y = perc, x=""), fill = Exp.Condition) + 
-#   geom_bar(stat = "identity", aes(fill = Exp.Condition)) +
-#   scale_fill_manual(values = c("#132b43","#6a89a7","#8c8c8c","#cccccc"))+
-#   coord_polar("y", start=0) +
-#   theme_void() + theme(
-#     legend.title = element_text(size = 15),
-#     legend.text = element_text(size = 14),
-#     plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
-#   ) +
-#   labs(fill = "Site type", title = "E. coli positive birds")
-
-#ggarrange(ec,sa,common.legend = T)
-
-#boxplot(bbMaster$binPos2 ~ bbMaster$Exp.Condition)
-
-
-
-# part = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
-#                   Response = c("Y","Y","Y","N","N","N"),
-#                   Households = c(4,3,7,10,11,7)
-# )
-# 
-# part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
-# part$Response = factor(part$Response, levels = c("N", "Y"))
-# ggplot(part, aes(fill=Response, y=Households, x=Question)) + 
-#   geom_bar(position="stack", stat="identity") +
-#   scale_fill_grey() +
-#   theme_bw() + theme(
-#     axis.text = element_text(size = 14),
-#     axis.title = element_text(size = 17),
-#     legend.title = element_text(size = 15),
-#     legend.text = element_text(size = 14)
-#   ) +
-#   #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
-#   labs(x = "Survey Question", y = "Number of Households")
-# 
-# detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
+detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
 
 
 # Daily aggregation of bird feeder detections
@@ -364,7 +358,7 @@ sim2 # Power for Exp.Condition is now 79%, which is much better and what we shou
 #vals = c("#2C4B81","#8FA369")
 #negative blue, positive green
 
-#part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease Concern"))
+#part$Question = factor(part$Question, levels = c("Cleaning","Wash Hands","Disease"))
 #part$Response = factor(part$Response, levels = c("N", "Y"))
 
 part = read.csv("SimpleSurveyData.csv")
@@ -372,24 +366,27 @@ part = read.csv("SimpleSurveyData.csv")
 table(part$ExpCondition, part$CleanFeeder) # 4 clean, 3 don't
 table(part$ExpCondition, part$CleanChicken) # 5 clean, 2 don't
 table(part$ExpCondition, part$WashHands) # 2 do, 12 don't
-table(part$ExpCondition, part$DiseaseConcern) # 6 are concerned, 8 are not
+table(part$ExpCondition, part$Disease) # 6 are concerned, 8 are not
 
-part.simp = data.frame(Question = c("Cleaning","Wash Hands", "Disease Concern","Cleaning","Wash Hands", "Disease Concern"),
+part.simp = data.frame(Question = c("Cleaning","Wash Hands", "Disease","Cleaning","Wash Hands", "Disease"),
                    Response = c("Y","Y","Y","N","N","N"),
                    Households = c(9,2,6,5,12,8)
  )
 
 ggplot(part.simp, aes(fill=Response, y=Households, x=Question)) + 
   geom_bar(position="stack", stat="identity") +
-  scale_fill_manual(values = c("#2C4B81","#8FA369")) +
+  scale_fill_manual(values = c("#8FA369","#2C4B81")) +
   theme_bw() + theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 17),
+    axis.text.x = element_text(size = 15, hjust = 1),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 17, face = "bold"),
+    strip.text = element_text(size = 17, face = "bold"),
     legend.title = element_text(size = 15),
-    legend.text = element_text(size = 14)
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
   ) +
   #annotate(geom="text", x = 3.2, y = 13.3, label = "a)",color = "white",size = 10) +
-  labs(x = "Survey Question", y = "Number of Households")
+  labs(x = "Survey Question", y = "Number of Households", title = "Participant Concerns")
 
 #detInfect = merge(bbDetSum, infect, by ="PitID", all = T)
 
